@@ -1,5 +1,5 @@
 let allT = JSON.parse(localStorage.getItem("allTodos"));
-let allTodos = (allT != null) ? allT : [];
+let allTodos = allT !== null ? allT : [];
 
 const todoContainers = document.querySelectorAll(".todo-container");
 const tc = document.querySelector(".todo")
