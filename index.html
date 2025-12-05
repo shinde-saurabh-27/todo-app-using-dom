@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo - make your worklist simpler</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1 class="logo">Todemy <span>- the ultimate task manager</span></h1>
+        <button id="add-todo" type="button">Add a Todo</button>
+    </header>
+    <main>
+        <div id="0" class="todo todo-container">
+            
+        </div>
+        <div id="1" class="progress todo-container">
+            
+        </div>
+        <div id="2" class="done todo-container">
+            
+        </div>
+    </main>
+    <div class="new-todo-section">
+        <div class="input-card">
+            <label for="task-input">Todo Title</label>
+            <input type="text" name="task-input" id="task-input" placeholder="Go to gym">
+            <label for="desc-input">Todo Description</label>
+            <input type="text" name="desc-input" id="desc-input" placeholder="Go to gym and perform heavy lifts">
+            <button id="save-btn" type="button">Save Todo</button>
+            <p>Note: tap anywhere to cancel</p>
+        </div>
+    </div>
+    <div class="small-screen-msg">
+        <h2>This app is currently available for desktop only!</h2>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

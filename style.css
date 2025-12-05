@@ -1,0 +1,182 @@
+@font-face {
+    font-family: horror;
+    src: url(shlop\ rg.otf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+:root {
+    --bg-color: #111;
+}
+
+body{
+    background-color: black;
+    color: wheat;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background-color: var(--bg-color);
+}
+
+header h1, header h1 span {
+    font-family: horror;
+    letter-spacing: 1px;
+}
+
+header button{
+    padding: 10px 20px;
+    background-color: wheat;
+    border: 2px solid wheat;
+    font-weight: bold;
+    border-radius: 20px;
+    color: #111;
+    cursor: pointer;
+}
+
+.small-screen-msg{
+    display: none;
+    width: 100%;
+    height: 90%;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.small-screen-msg h2{
+    font-family: horror;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+main {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+main .todo-container {
+    width: 100%;
+    background-color: var(--bg-color);
+    padding: 10px;
+    border-radius: 10px;
+    flex-grow: 1;
+}
+
+main .hover-container{
+    border: 2px dotted wheat;
+}
+
+main .todo-container .heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(245, 222, 179, 0.432);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+main .todo-container .task {
+    background-color: wheat;
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    color: #111;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    cursor: grab;
+}
+
+.task button{
+    align-self: flex-end;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: red;
+    font-size: 16px;
+    color: wheat;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.new-todo-section {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.871);
+}
+
+.new-todo-section .input-card {
+    width: 40%;
+    background-color: #111;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border-radius: 10px;
+}
+
+.new-todo-section .input-card input {
+    background-color: transparent;
+    padding: 5px 10px;
+    border-radius: 30px;
+    border: 2px solid wheat;
+    outline: none;
+    color: bisque;
+}
+
+.new-todo-section .input-card button {
+    background-color: rgba(245, 222, 179, 0.884);
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #111;
+    border-radius: 30px;
+    outline: none;
+    font-weight: bold;
+    align-self: flex-end;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.new-todo-section .input-card p {
+    align-self: center;
+    color: rgba(245, 222, 179, 0.504);
+}
+
+@media (max-width: 900px) {
+    main {
+        display: none;
+    }
+    header {
+        justify-content: center;
+    }
+    header h1 span {
+        display: none;
+    }
+    header button{
+        display: none;
+    }
+    .small-screen-msg{
+        display: flex;
+        font-size: 29px;
+    }
+}
