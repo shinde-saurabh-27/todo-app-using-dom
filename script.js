@@ -51,8 +51,8 @@ saveBtn.addEventListener("click", onSave);
 inputSection.addEventListener("keydown", (event)=>{event.key === "Enter" && onSave();});
 
 function loadTodos() {
-    main.style.display = allTodos.length !== 0 ? "flex" : "none";
-    firstTodoSection.style.display = allTodos.length === 0 ? "flex" : "none";
+    main.style.display = window.innerWidth>900 && allTodos.length !== 0 ? "flex" : "none";
+    firstTodoSection.style.display = window.innerWidth>900 && allTodos.length === 0 ? "flex" : "none";
     let todoClutter = `<div class="heading">
                 <h1>Todo</h1>
                 <span class="counter">${allTodos.filter(todo => { return todo.container === "todo" }).length}</span>
