@@ -1,7 +1,7 @@
-let allT = JSON.parse(localStorage.getItem("allTodos"));
-let allTodos = allT !== null ? allT : [];
+let allTds = JSON.parse(localStorage.getItem("allTodos"));
+let allTodos = allTds !== null ? allTds : [];
 
-const todoContainers = document.querySelectorAll(".todo-container");
+const todoContainers = document.querySelectorAll(".todo-container")
 const tc = document.querySelector(".todo")
 const pc = document.querySelector(".progress")
 const dc = document.querySelector(".done")
@@ -11,32 +11,48 @@ const inputSection = document.querySelector(".new-todo-section")
 const inputTodo = document.querySelector("#task-input")
 const inputDesc = document.querySelector("#desc-input")
 const saveBtn = document.querySelector("#save-btn")
+const main = document.querySelector("main")
+const firstTodoSection = document.querySelector(".create-first-todo");
+const createBtn = document.querySelector(".create-first-todo button");
 
-addBtn.addEventListener("click", ()=>{
+createBtn.addEventListener("click", () => {
     inputSection.style.display = "flex";
 })
 
-inputSection.addEventListener("click", (event)=>{
+addBtn.addEventListener("click", () => {
+    inputSection.style.display = "flex";
+})
+
+inputSection.addEventListener("click", (event) => {
     if (event.target === event.currentTarget) {
         inputSection.style.display = "none";
     }
 })
 
-saveBtn.addEventListener("click", ()=>{
+function onSave(){
     if (inputTodo.value != "") {
-        allTodos = [...allTodos, {task: inputTodo.value, desc: inputDesc.value, container: "todo"}];
+        allTodos = [...allTodos, { task: inputTodo.value, desc: inputDesc.value, container: "todo" }];
         localStorage.setItem("allTodos", JSON.stringify(allTodos));
-        inputTodo.value = ""
-        inputDesc.value = ""
-        inputSection.style.display = "none";
-        loadTodos()
+        saveBtn.innerHTML = "saving...";
+        setTimeout(() => {
+            inputTodo.value = ""
+            inputDesc.value = ""
+            inputSection.style.display = "none";
+            firstTodoSection.style.display = "none";
+            saveBtn.innerHTML = "Save Todo";
+            loadTodos()
+        }, 600);
     } else {
         alert("Please enter a task to save!")
     }
-    
-})
+}
+
+saveBtn.addEventListener("click", onSave);
+inputSection.addEventListener("keydown", (event)=>{event.key === "Enter" && onSave();});
 
 function loadTodos() {
+    main.style.display = allTodos.length !== 0 ? "flex" : "none";
+    firstTodoSection.style.display = allTodos.length === 0 ? "flex" : "none";
     let todoClutter = `<div class="heading">
                 <h1>Todo</h1>
                 <span class="counter">${allTodos.filter(todo => { return todo.container === "todo" }).length}</span>
@@ -77,15 +93,10 @@ function loadTodos() {
 }
 loadTodos();
 
-const counters = document.querySelectorAll(".counter");
-let taskToBeDragged = null;
-let indexOfTaskContainer = null;
 let targetTaskIndex = null;
 
 todoContainers.forEach((todoContainer, index) => {
     todoContainer.addEventListener("dragstart", (event) => {
-        taskToBeDragged = event.target;
-        indexOfTaskContainer = index;
         targetTaskIndex = event.target.id;
     })
     todoContainer.addEventListener("dragenter", () => {
@@ -100,16 +111,13 @@ todoContainers.forEach((todoContainer, index) => {
     todoContainer.addEventListener("drop", (event) => {
         event.preventDefault();
         if (event.currentTarget.classList.contains("hover-container")) {
-            taskToBeDragged.parentNode.removeChild(taskToBeDragged);
-            counters[indexOfTaskContainer].innerHTML--;
-            todoContainer.appendChild(taskToBeDragged);
-            counters[index].innerHTML++;
             allTodos[targetTaskIndex].container = event.currentTarget.classList[0];
+            loadTodos();
             localStorage.setItem("allTodos", JSON.stringify(allTodos));
             todoContainer.classList.remove("hover-container");
         }
     })
-    todoContainer.addEventListener("click", (event)=>{
+    todoContainer.addEventListener("click", (event) => {
         if (event.target.className === "delete-btn") {
             allTodos = allTodos.filter((todo, index) => {
                 return index != event.target.id;

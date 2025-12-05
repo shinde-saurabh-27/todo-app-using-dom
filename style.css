@@ -69,6 +69,25 @@ main {
     padding: 10px;
 }
 
+.create-first-todo {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.create-first-todo button {
+    padding: 10px 20px;
+    background-color: wheat;
+    border-radius: 30px;
+    cursor: pointer;
+    color: #111;
+    font-weight: bold;
+}
+
 main .todo-container {
     width: 100%;
     background-color: var(--bg-color);
@@ -78,7 +97,9 @@ main .todo-container {
 }
 
 main .hover-container{
-    border: 2px dotted wheat;
+    border: 2px dashed wheat;
+    transform: translateY(10px) scale(0.99);
+    transition: transform 0.3s ease;
 }
 
 main .todo-container .heading {
@@ -131,13 +152,13 @@ main .todo-container .task {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
     border-radius: 10px;
 }
 
 .new-todo-section .input-card input {
     background-color: transparent;
-    padding: 5px 10px;
+    padding: 7px 10px;
     border-radius: 30px;
     border: 2px solid wheat;
     outline: none;
@@ -164,6 +185,9 @@ main .todo-container .task {
 
 @media (max-width: 900px) {
     main {
+        display: none;
+    }
+    .create-first-todo{
         display: none;
     }
     header {
